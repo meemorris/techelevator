@@ -1,6 +1,8 @@
 package com.techelevator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Exercises {
@@ -16,7 +18,8 @@ public class Exercises {
 	 array2List( {"Left", "Right", "Forward", "Back"} )  ->  ["Left", "Right", "Forward", "Back"]
 	 */
 	public List<String> array2List(String[] stringArray) {
-		return null;
+		List<String> arrayList = Arrays.asList(stringArray); //this creates a fixed list of strings that contains the same contents as stringArray
+		return arrayList;
 	}
 
 	/*
@@ -26,7 +29,8 @@ public class Exercises {
 	 list2Array( ["Left", "Right", "Forward", "Back"] )  ->  {"Left", "Right", "Forward", "Back"}
 	 */
 	public String[] list2Array(List<String> stringList) {
-		return null;
+		String[] listToArray = stringList.toArray(new String[0]); //this creates an array of strings that contain the elements of stringList
+		return listToArray;
 	}
 
 	/*
@@ -37,7 +41,14 @@ public class Exercises {
 	 no4LetterWords( {"Jack", "Jill", "Jane", "John", "Jim"} )  ->  ["Jim"]
 	 */
 	public List<String> no4LetterWords(String[] stringArray) {
-		return null;
+		List<String> result = new ArrayList<>();
+
+		for (String value : stringArray) {
+			if (value.length() != 4) {
+				result.add(value);
+			}
+		}
+		return result;
 	}
 
 	/*
@@ -47,7 +58,12 @@ public class Exercises {
 	 arrayInt2ListDouble( {84, 99, 3285, 13, 877} ) -> [42, 49.5, 1642.5, 6.5, 438.5]
 	 */
 	public List<Double> arrayInt2ListDouble(int[] intArray) {
-		return null;
+		List<Double> doubleList = new ArrayList<>();
+
+		for (Integer divide : intArray) {
+			doubleList.add(divide / 2.0);
+		}
+		return doubleList;
 	}
 
 	/*
@@ -57,8 +73,36 @@ public class Exercises {
 	 findLargest( [34070, 1380, 81238, 7782, 234, 64362, 627] ) -> 64362
 	 */
 	public Integer findLargest(List<Integer> integerList) {
-		return null;
+		List<Integer> sortedList = new ArrayList<>(integerList);
+		Collections.sort(sortedList);
+		Collections.reverse(sortedList);
+		return sortedList.get(0);
+
 	}
+
+	/*
+	Another method that works:
+	return Collections.max(integerList);
+
+	 */
+
+
+	/*
+	For this findLargest question, I was trying to set this up as a for loop that iterates down the list.
+	Did not seem to work :) Would be interested to see similar solutions that would work.
+
+	Integer largestValue = 0;
+
+		for (int i = integerList.size() - 1; i > 1; i--) {
+			if (integerList.get(i) > integerList.get(i - 1)) {
+				largestValue = integerList.get(i);
+			}
+		}
+		return largestValue;
+
+	 */
+
+
 
 	/*
 	 Given an array of Integers, return a List of Integers containing just the odd values.
@@ -67,7 +111,14 @@ public class Exercises {
 	 oddOnly( {734, 233, 782, 811, 3, 9999} ) -> [233, 811, 3, 9999]
 	 */
 	public List<Integer> oddOnly(Integer[] integerArray) {
-		return null;
+		List<Integer> oddValues = new ArrayList<>();
+
+		for (int integerNums : integerArray) {
+			if ((integerNums % 2) == 1) {
+				oddValues.add(integerNums);
+			}
+		}
+		return oddValues;
 	}
 
 	/*
@@ -78,8 +129,28 @@ public class Exercises {
 	 foundIntTwice( [9, 23, 44, 2, 88, 44], 44) -> true
 	 */
 	public boolean foundIntTwice(List<Integer> integerList, int intToFind) {
-		return false;
+		boolean result = false;
+		int count = 0;
+
+		for (Integer value : integerList) {
+			if (value == intToFind) {
+				count += 1;
+			}
+		}
+		if (count >= 2) {
+			result = true;
+		}
+		return result;
 	}
+
+
+	/*
+	Instead of having a count variable that detects how many times value is equal to intToFind after
+	being passed through the for each loop, is there a way to set up the List equivalent of a substring to compare equality between that and the value?
+	This was my attempt but definitely didn't cut it. Am I misunderstanding how to use these methods?
+	result = integerList.subList(integerList.get(integerList.indexOf(value + 1), integerList.get(integerList.size() - 2)).contains(value);
+	 */
+
 
 	/*
 	 Given an array of Integers, return a List that contains the same Integers (as Strings). Except any multiple of 3
@@ -95,7 +166,21 @@ public class Exercises {
 	 equals "1")
 	 */
 	public List<String> fizzBuzzList(Integer[] integerArray) {
-		return null;
+		List<String> fizzBuzz = new ArrayList<>();
+
+		for (Integer value : integerArray) {
+
+			if ((value %  5) == 0 && (value % 3) == 0) {
+				fizzBuzz.add("FizzBuzz");
+			} else if ((value % 5) == 0) {
+				fizzBuzz.add("Buzz");
+			} else if ((value % 3) == 0) {
+				fizzBuzz.add("Fizz");
+			} else {
+				fizzBuzz.add(value.toString());
+			}
+		}
+		return fizzBuzz;
 	}
 
 	/*
@@ -106,7 +191,18 @@ public class Exercises {
 	 interleaveLists( [1, 2, 3], [4, 5, 6] )  ->  [1, 4, 2, 5, 3, 6]
 	 */
 	public List<Integer> interleaveLists(List<Integer> listOne, List<Integer> listTwo) {
-		return null;
+		List<Integer> listOneMixedTwo = new ArrayList<>();
+
+		for (int i = 0; i < Math.max(listOne.size(), listTwo.size()); i++) {
+			if (i < listOne.size()) {
+				listOneMixedTwo.add(listOne.get(i));
+			}
+			if (i < listTwo.size()) {
+				listOneMixedTwo.add(listTwo.get(i));
+			}
+		}
+
+		return listOneMixedTwo;
 	}
 
 }
