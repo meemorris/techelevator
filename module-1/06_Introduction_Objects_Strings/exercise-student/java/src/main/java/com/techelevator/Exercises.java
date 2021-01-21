@@ -186,7 +186,14 @@ public class Exercises {
 	 withoutEnd2("ab") → ""
 	 */
 	public String withoutEnd2(String str) {
-		return str.substring(0, str.length() - 1);
+		String result = "";
+
+		if (str.length() > 2) {
+			result = str.substring(1, str.length() - 1);
+		} else {
+			result = "";
+		}
+		return result;
 	}
 
 	/*
@@ -443,13 +450,16 @@ public class Exercises {
 	 */
 	public String stringYak(String str) {
 		String result = "";
-		if (str.startsWith("yak")) {
-			result = str.substring(str.indexOf("yak") + 3);
-		}
-		if (str.endsWith("yak")) {
-			result = str.substring(0, str.indexOf("yak"));
+		int threeCharactersToEnd = str.length() - 3;
+		for (int i = 0; i < str.length(); i++) {
+			if ((i <= threeCharactersToEnd) && str.charAt(i) == 'y' && str.charAt(i + 2) == 'k') {
+				i = i + 2;
+			} else {
+				result = result + str.substring(i, i + 1);
+			}
 		}
 		return result;
 	}
+
 
 }
