@@ -37,6 +37,11 @@ public class Fibonacci {
 				System.out.println("There are no numbers less than " + numericInteger + " in the Fibonacci series.");
 			}
 
+			/*
+			The way I have it currently set up, always prints out a comma after the fibonacci value. Not sure if
+			there is a way to have commas between the values without having a comma on the last value.
+			 */
+
 			//Ask user if they have any other numbers they'd like to try
 			System.out.print("\nAny other numbers you'd like to try (y/n)? ");
 			String response = userInput.nextLine();
