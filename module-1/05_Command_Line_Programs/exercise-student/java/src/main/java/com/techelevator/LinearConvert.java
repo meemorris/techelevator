@@ -13,7 +13,7 @@ public class LinearConvert {
 		while (!finished) {
 
 			//Prompt user to enter a length
-			System.out.print("Please enter length measurement: ");
+			System.out.print("Please enter a length measurement: ");
 			Scanner userInput = new Scanner(System.in);
 			String initialLength = userInput.nextLine();
 			double numericInitialLength = Double.parseDouble(initialLength);
@@ -27,16 +27,28 @@ public class LinearConvert {
 			double meters = 0;
 			if (indicatedMeasurement.equals("m") || indicatedMeasurement.equals("M")) {
 				feet = numericInitialLength * 3.2808399;
+				System.out.format("%.2f meters is %.2f feet.\n", numericInitialLength, feet);
 			} else if (indicatedMeasurement.equals("f") || indicatedMeasurement.equals("F")) {
 				meters = numericInitialLength * 0.3048;
+				System.out.format("%.2f feet is %.2f meters.\n", numericInitialLength, meters);
 			}
 
-			//Display old and new measurements to the console
+			/*
+			When I initially worked on this, I had set up two different sections with if else if
+			statements, one that included the calculation (above this comment) and then a separate one that just printed
+			out the result. I was finding that it wouldn't print out the conversion and would say
+			something like 25 feet is 0.00 meters, until I moved the print statement to be within
+			the if else if code blocks that included the calculation. Is that because of variable scope?
+
+			(The separate one that printed the result, which was superfluous anyway to have the same if else if statements twice :)
+			Display old and new measurements to the console
 			if (indicatedMeasurement.equals("m") || indicatedMeasurement.equals("M")) {
 				System.out.format("%.2f feet is %.2f meters.\n", numericInitialLength, meters);
 			} else if (indicatedMeasurement.equals("f") || indicatedMeasurement.equals("F")) {
 				System.out.format("%.2f meters is %.2f feet.\n", numericInitialLength, feet);
 			}
+
+			 */
 
 			//Prompt user if they are finished
 			System.out.print("Are you done making me do all these calculations (y/n)? ");
