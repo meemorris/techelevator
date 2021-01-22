@@ -17,11 +17,6 @@ public class Exercises {
 
 	/*
 
-	if (weekday && !vacation) {
-			return false;
-		}
-		return true;
-	}
 	 2. We have two monkeys, a and b, and the parameters aSmile and bSmile indicate if each is smiling.
 	 We are in trouble if they are both smiling or if neither of them is smiling. Return true if we
 	 are in trouble.
@@ -30,20 +25,13 @@ public class Exercises {
 	 monkeyTrouble(true, false) → false
 	 */
 	public boolean monkeyTrouble(boolean aSmile, boolean bSmile) {
-		if (aSmile && bSmile) {
-			return true;
-		} else return !aSmile && !bSmile;
-	}
-
-	/* if (aSmile && bSmile) {
-			return true;
-		} else if (!aSmile && !bSmile) {
-			return true;
+		boolean result = false;
+		if (aSmile && bSmile || !aSmile && !bSmile) {
+			result = true;
 		}
-		return false;
+		return result;
 	}
 
-	 */
 
 	/*
 	 3. Given two int values, return their sum. Unless the two values are the same, then return double their sum.
