@@ -12,10 +12,8 @@ public class Exercises {
 	public boolean firstLast6(int[] nums) {
 		int lastIndex = nums.length - 1;
 		boolean result = false;
-		for (int i = 0; i < nums.length; i++) {
-			if (nums[0] == 6 || nums[lastIndex] == 6) {
-				result = true;
-			}
+		if (nums[0] == 6 || nums[lastIndex] == 6) {
+			result = true;
 		}
 		return result;
 	}
@@ -29,15 +27,10 @@ public class Exercises {
 	 */
 	public boolean sameFirstLast(int[] nums) {
 		boolean result = false;
-		if (nums.length > 0) {
-			int lastElement = nums.length - 1;
-			boolean firstElementAndLastEqual = nums[0] == nums[lastElement];
-
-			for (int i = 0; i < nums.length; i++) {
-				if (firstElementAndLastEqual) {
-					result = true;
-				}
-			}
+		int lastElement = nums.length - 1;
+		boolean firstElementAndLastEqual = nums[0] == nums[lastElement];
+		if (nums.length > 0 && firstElementAndLastEqual) {
+			result = true;
 		}
 		return result;
 	}

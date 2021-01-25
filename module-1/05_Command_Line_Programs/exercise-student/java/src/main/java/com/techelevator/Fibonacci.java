@@ -26,12 +26,12 @@ public class Fibonacci {
 
 			if (numericInteger > 1) {
 				System.out.println("The Fibonacci numbers less than " + numericInteger + " are: ");
-				System.out.print("0, 1, 1, ");
+				System.out.print("0, 1, 1");
 				for (int i = 1; i + fibonacciTwo < numericInteger;) {
 					fibonacci = i + fibonacciTwo;
 					i = fibonacciTwo;
 					fibonacciTwo = fibonacci;
-					System.out.print(fibonacci + ", ");
+					System.out.print(", " + fibonacci);
 				}
 			} else {
 				System.out.println("There are no numbers less than " + numericInteger + " in the Fibonacci series.");

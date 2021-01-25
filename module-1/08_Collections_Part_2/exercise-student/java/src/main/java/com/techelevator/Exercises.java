@@ -174,29 +174,16 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> wordCount(String[] words) {
-		Map<String,Integer> duplicateValue = new HashMap<>();
+		Map<String, Integer> duplicateValue = new HashMap<>();
 
 		for (String word : words) {
-			if (!duplicateValue.containsKey(word)) {
-				duplicateValue.put(word, countOfWordDuplicates(words, word));
-			}
+			if (duplicateValue.containsKey(word)) {
+				int currentCount = duplicateValue.get(word);
+				duplicateValue.put(word, currentCount + 1);
+			} else duplicateValue.put(word, 1);
 		}
-
 		return duplicateValue;
 	}
-
-	static public int countOfWordDuplicates (String[] words, String word) {
-
-		int count = 0;
-		for (String valueCheck : words) {
-			if (word.equals(valueCheck)) {
-				count += 1;
-
-			}
-		}
-		return count;
-	}
-
 
 
 	/*
