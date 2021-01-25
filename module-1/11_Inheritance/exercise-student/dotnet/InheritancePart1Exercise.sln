@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankTellerExercise", "BankTellerExercise\BankTellerExercise.csproj", "{93E4393C-9FCA-45C9-869A-4D1C2F6227C6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercises.Tests", "Exercises.Tests\Exercises.Tests.csproj", "{5A93F6BD-B002-45BE-B2A2-0C77B170377D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{93E4393C-9FCA-45C9-869A-4D1C2F6227C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93E4393C-9FCA-45C9-869A-4D1C2F6227C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93E4393C-9FCA-45C9-869A-4D1C2F6227C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93E4393C-9FCA-45C9-869A-4D1C2F6227C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A93F6BD-B002-45BE-B2A2-0C77B170377D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A93F6BD-B002-45BE-B2A2-0C77B170377D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A93F6BD-B002-45BE-B2A2-0C77B170377D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A93F6BD-B002-45BE-B2A2-0C77B170377D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {278A61A2-5EC3-49AD-9D77-6F0FBBBF0364}
+	EndGlobalSection
+EndGlobal
