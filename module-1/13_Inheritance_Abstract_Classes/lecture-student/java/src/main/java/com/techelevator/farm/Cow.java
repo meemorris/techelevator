@@ -2,7 +2,7 @@ package com.techelevator.farm;
 
 import java.math.BigDecimal;
 
-public class Cow extends FarmAnimal {
+public class Cow extends Livestock {
 
 	public Cow() {
 		super("Cow");

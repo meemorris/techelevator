@@ -10,7 +10,9 @@ public class OldMacdonald {
 		Cow daisy = new Cow();
 		Chicken nugget = new Chicken();
 		Alpaca peru = new Alpaca();
-		Singable[] singables = new Singable[] { daisy, nugget, peru, new Tractor() };
+		Duck firstDuck = new Duck();
+		firstDuck.setNickname("Quackers");
+		Singable[] singables = new Singable[] { daisy, nugget, peru, new Tractor(), firstDuck };
 
 		for (Singable singableThing : singables) {
 			String name = singableThing.getName();

@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 
 public class BankAccount {
 
-    private final String accountHolderName;
-    private final String accountNumber;
+    private String accountHolderName;
+    private String accountNumber;
     private BigDecimal balance;
 
     public String getAccountHolderName() {
@@ -23,7 +23,7 @@ public class BankAccount {
     public BankAccount(String accountHolderName, String accountNumber) {
         this.accountHolderName = accountHolderName;
         this.accountNumber = accountNumber;
-        balance = BigDecimal.valueOf(0);
+        this.balance = BigDecimal.valueOf(0);
     }
 
     public BankAccount(String accountHolderName, String accountNumber, int balance) {

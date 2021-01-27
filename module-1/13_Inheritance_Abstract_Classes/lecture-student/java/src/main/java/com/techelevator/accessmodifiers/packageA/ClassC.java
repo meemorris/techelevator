@@ -1,15 +1,9 @@
 package com.techelevator.accessmodifiers.packageA;
 
+public class ClassC {
 
-public class ClassA {
-
-
-    protected boolean methodA() {
+    public void methodC() {
         ClassA a = new ClassA();
         a.methodA();
-
-        return true;
     }
-
-
 }
