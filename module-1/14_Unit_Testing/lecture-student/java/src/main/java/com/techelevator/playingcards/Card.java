@@ -59,11 +59,19 @@ public class Card {
         cardValues.put("King", 13);
         cardValues.put("Ace", 14);
 
-        return cardValues.get(rank);
+        if(cardValues.containsKey(rank)) {
+            return cardValues.get(rank);
+        } else {
+            return 0;
+        }
     }
 
     public int getValue() {
         return getValueForRank(this.rank);
+    }
+
+    public double getHalfValue() { //just doing this so we can test a double
+        return getValueForRank(this.rank) / 2.0;
     }
 
     public void flip() {
