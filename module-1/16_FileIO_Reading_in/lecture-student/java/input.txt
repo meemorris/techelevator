@@ -1,0 +1,15 @@
+This is the first line of input.txt.
+
+
+
+This is the fifth line of input.txt.
+
+
+
+
+This is the tenth line of input.txt.
+
+
+
+
+This is the fifteenth line of input.txt.
