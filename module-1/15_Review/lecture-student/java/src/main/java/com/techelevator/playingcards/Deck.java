@@ -6,14 +6,11 @@ import java.util.List;
 
 public class Deck {
 
-    public static final String[] ALL_RANKS = new String[] {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven",
-                                      "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
-
     List<Card> allCards = new ArrayList<>();
 
     public Deck() {
         for (Suit suit : Suit.values()) {
-            for (String rank : ALL_RANKS) {
+            for (Rank rank : Rank.values()) {
                 Card card = new Card(rank, suit);
                 allCards.add(card);
             }
