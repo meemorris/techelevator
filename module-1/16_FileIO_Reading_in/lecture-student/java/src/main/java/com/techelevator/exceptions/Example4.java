@@ -6,7 +6,7 @@ public class Example4 {
 		
 		/* we can throw our own Exceptions in response to exceptional cases 
 		 * see the source code of calculateHotelRoomCharges for an example */
-		int nights = -3;
+		int nights = 3;
 		int numberOfGuests = 2;
 		try {
 			double amountOwed = calculateHotelRoomCharges(nights, numberOfGuests);
@@ -28,7 +28,7 @@ public class Example4 {
 		
 		/* The throw statements below demonstrate how to throw a new Exception. */
 		if(nights < 1) {
-			throw new IllegalArgumentException("Minimum number of nights is 1");
+			throw new IllegalArgumentException("Minimum number of nights is 1"); //creates a new exception and then throws it
 		} else if(numberOfGuests < 1) {
 			throw new IllegalArgumentException("Minimum number of guests is 1");
 		}

@@ -1,6 +1,6 @@
 package com.techelevator.exceptions;
 
-public class OverdraftException extends Exception {
+public class OverdraftException extends Exception { //you can create as many subclasses of exception as you want. Exception is a checked exception.
 
 	private double overdraftAmount = 0;
 	
