@@ -19,7 +19,7 @@ public class SearchDomain {
 	/**
 	 * Create a Search Domain of a folder
 	 *
-	 * @param folder
+	 * @param folder							//what is @param and @throws
 	 * @throws SearchDomainException
 	 */
 	public SearchDomain(String folder) throws SearchDomainException {

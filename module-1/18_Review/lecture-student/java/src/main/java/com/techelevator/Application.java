@@ -13,7 +13,10 @@ import java.util.List;
 public class Application {
 	private static final String MENU_OPTION_LIST_INDEXED_FILES = "List files to be searched";
 	private static final String MENU_OPTION_PERFORM_SAMPLE_SEARCH = "Do a sample search";
-	private static final String[] MAIN_MENU_OPTIONS = {MENU_OPTION_LIST_INDEXED_FILES, MENU_OPTION_PERFORM_SAMPLE_SEARCH};
+	private static final String MENU_OPTION_PERFORM_SEARCH = "Search for a word or phrase";
+	private static final String MENU_OPTION_QUIT = "Quit the program";
+	private static final String[] MAIN_MENU_OPTIONS = {MENU_OPTION_LIST_INDEXED_FILES, MENU_OPTION_PERFORM_SAMPLE_SEARCH,
+			MENU_OPTION_PERFORM_SEARCH, MENU_OPTION_QUIT};
 
 	private static final String MENU_OPTION_SAMPLE_SEARCH_1 = "Search for 'squirrel'";
 	private static final String MENU_OPTION_SAMPLE_SEARCH_2 = "Search for 'telephone line'";
@@ -26,8 +29,8 @@ public class Application {
 	private SearchEngine searchEngine;
 
 	public static void main(String[] args) {
-		Application application = new Application("data");
-		application.run();
+		Application application = new Application("data"); //creates an instance of the application, calling the constructor
+		application.run(); //then it calls the run method, which is the heart of this application
 	}
 
 	public Application(String dataDirectory) {
@@ -35,15 +38,21 @@ public class Application {
 	}
 
 	public void run() {
-		TELog.log("Search application started");
-		prepareDomainAndEngine();
+		TELog.log("Search application started"); //this is a static method being used on a class name
+		prepareDomainAndEngine(); //calls another method
 
-		while (true) {
-			String selection = ui.promptForSelection(MAIN_MENU_OPTIONS);
+		boolean running = true;
+		while (running) {
+			String selection = ui.promptForSelection(MAIN_MENU_OPTIONS); //user interface variable up top (ui)
 			if (selection.equals(MENU_OPTION_LIST_INDEXED_FILES)) {
-				displayIndexedFiles();
+				displayIndexedFiles(); //all within it's own method
 			} else if (selection.equals(MENU_OPTION_PERFORM_SAMPLE_SEARCH)) {
 				handleSearchMenu();
+			} else if (selection.equals(MENU_OPTION_PERFORM_SEARCH)) {
+				String text = ui.promptForString("What would you like to search for? ");
+				performSearch(text);
+			} else if (selection.equals(MENU_OPTION_QUIT)) {
+				running = false;
 			}
 		}
 	}
@@ -90,4 +99,5 @@ public class Application {
 		}
 		ui.pauseOutput();
 	}
+
 }

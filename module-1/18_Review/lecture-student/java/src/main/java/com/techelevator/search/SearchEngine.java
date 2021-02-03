@@ -9,7 +9,7 @@ import java.util.*;
 public class SearchEngine {
 
 	private SearchDomain sd;
-	private Map<String, List<WordLocation>> indexedWords = null;
+	private Map<String, List<WordLocation>> indexedWords = null; //is this equal to null so it only has memory if a search engine object has been created
 
 	public SearchEngine(SearchDomain sd) {
 		this.sd = sd;
