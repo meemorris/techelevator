@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -65,7 +64,7 @@ public class JDBCCityDAOIntegrationTest {
 
 	@Test
 	public void save_new_city_and_read_it_back() throws SQLException {
-		City theCity = getCity("SQL Station", "South Dakota", "USA", 65535);
+		City theCity = makeLocalCityObject("SQL Station", "South Dakota", "USA", 65535);
 
 		dao.save(theCity);
 		City savedCity = dao.findCityById(theCity.getId());
@@ -76,7 +75,7 @@ public class JDBCCityDAOIntegrationTest {
 
 	@Test
 	public void returns_cities_by_country_code() {
-		City theCity = getCity("SQL Station", "South Dakota", TEST_COUNTRY, 65535);
+		City theCity = makeLocalCityObject("SQL Station", "South Dakota", TEST_COUNTRY, 65535);
 
 		dao.save(theCity);
 		List<City> results = dao.findCityByCountryCode(TEST_COUNTRY);
@@ -90,8 +89,8 @@ public class JDBCCityDAOIntegrationTest {
 	@Test
 	public void returns_multiple_cities_by_country_code() {
 
-		dao.save(getCity("SQL Station", "South Dakota", TEST_COUNTRY, 65535));
-		dao.save(getCity("Postgres Point", "North Dakota", TEST_COUNTRY, 65535));
+		dao.save(makeLocalCityObject("SQL Station", "South Dakota", TEST_COUNTRY, 65535));
+		dao.save(makeLocalCityObject("Postgres Point", "North Dakota", TEST_COUNTRY, 65535));
 
 		List<City> results = dao.findCityByCountryCode(TEST_COUNTRY);
 
@@ -102,7 +101,7 @@ public class JDBCCityDAOIntegrationTest {
 	@Test
 	public void returns_cities_by_district() {
 		String testDistrict = "Tech Elevator";
-		City theCity = getCity("SQL Station", testDistrict, TEST_COUNTRY, 65535);
+		City theCity = makeLocalCityObject("SQL Station", testDistrict, TEST_COUNTRY, 65535);
 		dao.save(theCity);
 
 		List<City> results = dao.findCityByDistrict(testDistrict);
@@ -113,7 +112,7 @@ public class JDBCCityDAOIntegrationTest {
 		assertCitiesAreEqual(theCity, savedCity);
 	}
 
-	private City getCity(String name, String district, String countryCode, int population) {
+	private City makeLocalCityObject(String name, String district, String countryCode, int population) {
 		City theCity = new City();
 		theCity.setName(name);
 		theCity.setDistrict(district);
