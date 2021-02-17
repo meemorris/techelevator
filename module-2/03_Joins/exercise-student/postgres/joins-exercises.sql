@@ -142,7 +142,7 @@ JOIN address ON address.address_id = store.address_id
 JOIN inventory ON store.store_id = inventory.store_id
 JOIN rental ON rental.inventory_id = inventory.inventory_id
 JOIN payment ON payment.rental_id = rental.rental_id
-GROUP BY store.store_id, street_address
+GROUP BY store.store_id, street_address;
 
 
 -- 16. The top ten film titles by number of rentals
