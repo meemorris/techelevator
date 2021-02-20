@@ -16,8 +16,6 @@ CREATE TABLE employee
    CONSTRAINT pk_employee_id PRIMARY KEY(employee_id)
 );
 
-ALTER TABLE employee
-ADD CONSTRAINT fk_department_id FOREIGN KEY(department_id) REFERENCES department(department_id);
 
 CREATE TABLE department
 (
@@ -26,6 +24,9 @@ CREATE TABLE department
    
    CONSTRAINT pk_department_id PRIMARY KEY(department_id)
 );
+
+ALTER TABLE employee
+ADD CONSTRAINT fk_department_id FOREIGN KEY(department_id) REFERENCES department(department_id);
 
 CREATE TABLE project
 (
@@ -93,3 +94,5 @@ INSERT INTO project_employee(project_id, employee_id) VALUES
 (3, '333-222-6868'),
 (4, '222-111-4646'),
 (4, '778-666-1313');
+
+COMMIT;
