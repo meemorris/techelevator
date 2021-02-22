@@ -34,6 +34,8 @@ public class ConsoleService {
         return menuSelection;
     }
 
+
+
     /**
      * Given a location this method will print out the location to the console.
      * @param location
