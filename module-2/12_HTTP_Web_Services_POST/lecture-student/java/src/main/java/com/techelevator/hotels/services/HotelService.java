@@ -28,8 +28,27 @@ public class HotelService {
    * @return Reservation
    */
   public Reservation addReservation(String newReservation) {
-    // TODO: Implement method
-    return null;
+    Reservation reservation = makeReservation(newReservation);
+    if (reservation == null) {
+      return null;
+    }
+    //doing a put or post and putting json in the body, need to create your own header to say hey there's some json in the body
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.APPLICATION_JSON);
+
+    //expecting back a reservation <Reservation>.
+    //in the constructor for HttpEntity takes 2 parameters, what goes in the body, and then the header
+    HttpEntity<Reservation> entity = new HttpEntity<>(reservation, headers);
+
+    //put the post in a try catch block
+    try {
+      reservation = restTemplate.postForObject(BASE_URL + "hotels/" + reservation.getHotelID() + "/reservations", entity, Reservation.class);
+    } catch (RestClientResponseException e) {
+      console.printError(e.getRawStatusCode() + ": " + e.getStatusText());
+    } catch (ResourceAccessException e) {
+      console.printError(e.getMessage()); //this might not return a status text or code
+    }
+    return reservation;
   }
 
   /**
@@ -40,8 +59,24 @@ public class HotelService {
    * @return
    */
   public Reservation updateReservation(String CSV) {
-    // TODO: Implement method
-    return null;
+    Reservation reservation = makeReservation(CSV);
+    if (reservation==null) {
+      return null;
+    }
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.APPLICATION_JSON);
+
+    HttpEntity<Reservation> entity = new HttpEntity<>(reservation, headers);
+    //second parameter is the request which is the entity created
+    try {
+      //difference between post/add is that we have the reservation id in the URL and we use restTemplate.put()
+      restTemplate.put(BASE_URL + "reservations/" + reservation.getId(), entity);
+    } catch (RestClientResponseException e) {
+      console.printError(e.getRawStatusCode() + ": " + e.getStatusText());
+    } catch (ResourceAccessException e) {
+      console.printError(e.getMessage()); //this might not return a status text or code
+    }
+    return reservation;
   }
 
   /**
@@ -50,7 +85,14 @@ public class HotelService {
    * @param id
    */
   public void deleteReservation(int id) {
-    // TODO: Implement method
+    //we only need the id not the whole reservation object, so just the primary key.
+    try {
+      restTemplate.delete(BASE_URL + "reservations/" + id);
+    } catch (RestClientResponseException e) { //client error, code that doesn't exist, etc. (bad request)
+      console.printError(e.getRawStatusCode() + ": " + e.getStatusText());
+    } catch (ResourceAccessException e) { //I/O error if the server is down
+      console.printError(e.getMessage()); //this might not return a status text or code
+    }
   }
 
   /* DON'T MODIFY ANY METHODS BELOW */

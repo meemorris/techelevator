@@ -65,18 +65,54 @@ public class AuctionService {
     }
 
     public Auction add(String auctionString) {
-        // place code here
-        return null;
+        Auction auction = makeAuction(auctionString);
+        if (auction == null) {
+            return null;
+        }
+
+        HttpEntity<Auction> entity = makeEntity(auction);
+
+        //http://localhost:3000/auctions
+
+        try {
+            auction = restTemplate.postForObject(API_URL, entity, Auction.class);
+        } catch (RestClientResponseException e) {
+            console.printError(e.getRawStatusCode() + ": " + e.getStatusText());
+            auction = null;
+        } catch (ResourceAccessException e) {
+            console.printError(e.getMessage()); //this might not return a status text or code
+            auction = null;
+        }
+        return auction;
     }
 
     public Auction update(String auctionString) {
-        // place code here
-        return null;
+        Auction auction = makeAuction(auctionString);
+        if (auction == null) {
+            return null;
+        }
+        HttpEntity<Auction> entity = makeEntity(auction);
+
+        try {
+            restTemplate.put(API_URL + "/" + auction.getId(), entity);
+        } catch (RestClientResponseException e) {
+            console.printError(e.getRawStatusCode() + ": " + e.getStatusText());
+            auction = null;
+        } catch (ResourceAccessException e) {
+            console.printError(e.getMessage()); //this might not return a status text or code
+            auction = null;
+        }
+        return auction;
     }
 
     public boolean delete(int id) throws RestClientResponseException, ResourceAccessException {
-        // place code here
-        return false;
+        boolean isComplete = true;
+        try {
+            restTemplate.delete(API_URL + "/" + id);
+        } catch (RestClientResponseException | ResourceAccessException e) {
+            isComplete = false;
+        }
+        return isComplete;
     }
 
     private HttpEntity<Auction> makeEntity(Auction auction) {
