@@ -1,5 +1,14 @@
 BEGIN TRANSACTION;
 
+
+SELECT s.site_id, s.campground_id, s.site_number, s.max_occupancy, s.accessible, s.max_rv_length, s.utilities
+FROM site s
+LEFT JOIN reservation ON reservation.site_id = site.site_id
+JOIN campground ON campground.campground_id = site.campground_id
+WHERE park_id=2;
+
+
+
 --created database in windows terminal
 
 CREATE TABLE employee

@@ -9,15 +9,15 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 public class JDBCCityDAO implements CityDAO {
-
+//implementation of my interface
 	private JdbcTemplate jdbcTemplate;
 	
-	public JDBCCityDAO(DataSource dataSource) {
+	public JDBCCityDAO(DataSource dataSource) { //jdbTemplate constructor takes a dataSource datatype
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
 	@Override
-	public void save(City newCity) {
+	public void create(City newCity) {
 		String sqlInsertCity = "INSERT INTO city(id, name, countrycode, district, population) " +
 							   "VALUES(?, ?, ?, ?, ?)";
 		newCity.setId(getNextCityId());
@@ -57,24 +57,36 @@ public class JDBCCityDAO implements CityDAO {
 
 	@Override
 	public List<City> findCityByDistrict(String district) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<City> cities = new ArrayList<>();
+		String sqlFindCityByDistrict = "SELECT id, name, countrycode, district, population "+
+										"FROM city "+
+										"WHERE district = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindCityByDistrict, district);
+		while(results.next()) {
+			City theCity = mapRowToCity(results);
+			cities.add(theCity);
+		}
+		return cities;
 	}
 
 	@Override
 	public void update(City city) {
-		// TODO Auto-generated method stub
-		
+		String sql = "UPDATE city SET name = ?, countrycode = ?, district = ?, population = ? " +
+				"WHERE id = ?";
+		jdbcTemplate.update(sql, city.getName(), city.getCountryCode(), city.getDistrict(), city.getPopulation(), city.getId());
 	}
 
+	//this is taking sql as a parameter and updating it so that you have in the database whatever sql has in memory
+	//afterwards you can update the object and call this method to update it in the database
 	@Override
 	public void delete(long id) {
-		// TODO Auto-generated method stub
-		
+		String sql = "DELETE FROM city WHERE id = ?";
+		jdbcTemplate.update(sql, id);
+		//deletes the city from the database with that id
 	}
 
 	private long getNextCityId() {
-		SqlRowSet nextIdResult = jdbcTemplate.queryForRowSet("SELECT nextval('seq_city_id')");
+		SqlRowSet nextIdResult = jdbcTemplate.queryForRowSet("SELECT nextval('seq_city_id')"); //doing the work manually of the SERIAL
 		if(nextIdResult.next()) {
 			return nextIdResult.getLong(1);
 		} else {

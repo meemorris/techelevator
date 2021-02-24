@@ -2,6 +2,7 @@ package com.techelevator.city;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.sql.DataSource;
 
@@ -29,10 +30,9 @@ public class JDBCCityDAO implements CityDAO {
 	public City findCityById(long id) {
 		City theCity = null;
 		String sqlFindCityById = "SELECT id, name, countrycode, district, population "
-								+ "FROM city " + "WHERE id = ?";
+				+ "FROM city " + "WHERE id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindCityById, id);
-		if (results.next()) { //in the if statement, returns true or false of whether or not there's a row to read (if there's nothing to return from your query, results.next() will be false
-			//if you try to read it when there's nothing that results from your query, you will get an error
+		if (results.next()) {
 			theCity = mapRowToCity(results);
 		}
 		return theCity;
@@ -66,7 +66,7 @@ public class JDBCCityDAO implements CityDAO {
 
 	@Override
 	public City update(City city) {
-		String sql = "UPDATE city set name = ?, countrycode = ?, district = ?, population = ? WHERE id = ?"; //usually for updates you update every value
+		String sql = "UPDATE city set name = ?, countrycode = ?, district = ?, population = ? WHERE id = ?";
 		jdbcTemplate.update(sql,city.getName(),city.getCountryCode(),city.getDistrict(),city.getPopulation(),city.getId());
 		return city;
 	}

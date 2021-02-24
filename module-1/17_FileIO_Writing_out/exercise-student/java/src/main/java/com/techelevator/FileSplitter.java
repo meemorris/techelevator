@@ -31,7 +31,7 @@ public class FileSplitter {
 		String dirAndPrefix = directory[0];
 
 		//Getting directory - initial approach :)
-//		String delimiter = "/";
+//		String delimiter = "/";Syste
 //		StringBuilder directoryPrep = new StringBuilder(); //like a mutable string, meant to be added on to
 //		for (int i = 0; i < path.length - 1; i++) {
 //			directoryPrep.append(path[i]).append(delimiter);

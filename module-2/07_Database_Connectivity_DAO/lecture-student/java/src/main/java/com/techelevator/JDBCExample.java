@@ -24,7 +24,8 @@ public class JDBCExample {
 		
 		/* Create a Statement object so that we can execute a SQL Query */
 		Statement stmt = conn.createStatement();
-		
+
+		//build this query in DBVisualizer first for any possible debugging
 		/* Execute a SQL query and return the results */
 		String sqlActionFilmsReleaseIn2006 = "SELECT film.title, film.release_year "+
 											 "FROM film JOIN film_category ON film.film_id = film_category.film_id "+

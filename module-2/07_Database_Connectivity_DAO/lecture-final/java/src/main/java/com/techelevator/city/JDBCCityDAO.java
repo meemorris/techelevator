@@ -85,9 +85,10 @@ public class JDBCCityDAO implements CityDAO {
 	}
 
 	private long getNextCityId() {
-		SqlRowSet nextIdResult = jdbcTemplate.queryForRowSet("SELECT nextval('seq_city_id')");
-		if(nextIdResult.next()) {
-			return nextIdResult.getLong(1);
+		String sqlGetNextId = "SELECT nextval('seq_department_id')";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetNextId);
+		if(results.next()) {
+			return results.getLong(1); //return the first column it gets, if you put in a number, it assumes you want that column number
 		} else {
 			throw new RuntimeException("Something went wrong while getting an id for the new city");
 		}
