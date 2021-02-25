@@ -61,7 +61,7 @@ public class AuctionValidationTest {
         assertEquals(violations.size(), 1);
 
         ConstraintViolation<Auction> violation = violations.iterator().next();
-        assertEquals("The field `description` should not be blank.", violation.getMessage());
+        assertEquals("The field `description` should not be blank.", violation.getMessage()); //when you write your validation, make sure your message has backticks
         assertEquals("description", violation.getPropertyPath().toString());
     }
 

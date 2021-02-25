@@ -19,6 +19,10 @@ public class HotelController {
     private HotelDAO hotelDAO;
     private ReservationDAO reservationDAO;
 
+    //Spring framework will create a hotelController object when needed. Since the constructor takes parameters,
+    //spring framework will look for the class that has @Component and implements HotelDAO interface for the first
+    //parameter and spring framework will look for the class that implements reservationDAO and has the @Component
+    //annotation for the second parameter.
     public HotelController(HotelDAO hotelDAO, ReservationDAO reservationDAO) {
         this.hotelDAO = hotelDAO;
         this.reservationDAO = reservationDAO;
@@ -85,10 +89,28 @@ public class HotelController {
      */
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/hotels/{id}/reservations", method = RequestMethod.POST)
-    public Reservation addReservation(@RequestBody Reservation reservation, @PathVariable("id") int hotelID)
+    public Reservation addReservation(@Valid @RequestBody Reservation reservation, @PathVariable("id") int hotelID)
             throws HotelNotFoundException {
         return reservationDAO.create(reservation, hotelID);
     }
+
+    /**
+     * Update a given reservation
+     *
+     * @param reservation
+     *
+     */
+    @RequestMapping(path = "/reservations/{id}", method = RequestMethod.PUT)
+    public Reservation update(@Valid @RequestBody Reservation reservation, @PathVariable int id) throws ReservationNotFoundException {
+        return reservationDAO.update(reservation, id);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(path = "/reservations/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable int id) throws ReservationNotFoundException {
+        reservationDAO.delete(id);
+    }
+
 
     /**
      * /hotels/filter?state=oh&city=cleveland
