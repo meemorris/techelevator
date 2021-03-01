@@ -32,7 +32,7 @@ public class AuthenticationController {
         this.authenticationManagerBuilder = authenticationManagerBuilder;
     }
 
-    @PostMapping("/login")
+    @PostMapping("/login") //shortcut @PostMapping
     public ResponseEntity<JWTToken> authorize(@Valid @RequestBody LoginDto loginDto) {
 
         UsernamePasswordAuthenticationToken authenticationToken =

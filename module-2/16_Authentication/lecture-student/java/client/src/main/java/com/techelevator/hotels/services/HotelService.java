@@ -34,9 +34,16 @@ public class HotelService {
     if (reservation == null) {
       throw new HotelServiceException(INVALID_RESERVATION_MSG);
     }
+    //send a post that includes the reservation in the body and the token in the header
+    //exchange vs. postForObject:
 
-    // TODO: Fix Me
-    throw new HotelServiceException("NOT IMPLEMENTED");
+
+    try {
+      reservation = restTemplate.postForObject(BASE_URL + "hotels/" + reservation.getHotelID() + "/reservations", makeReservationEntity(reservation), Reservation.class);
+    } catch (RestClientResponseException e) {
+      throw new HotelServiceException(e.getRawStatusCode() + " : " + e.getResponseBodyAsString());
+    }
+    return reservation;
   }
 
   /**
@@ -116,7 +123,8 @@ public class HotelService {
     Reservation[] reservations = null;
     try {
       reservations = restTemplate
-          .exchange(BASE_URL + "reservations", HttpMethod.GET, makeAuthEntity(), Reservation[].class).getBody();
+          .exchange(BASE_URL + "reservations", HttpMethod.GET, makeAuthEntity(), Reservation[].class).getBody(); //reservation[].class is what we're expecting back, give us the body of the response
+    //we didn't need to say getBody() before because the convenience method automatically did that for us
     } catch (RestClientResponseException ex) {
       throw new HotelServiceException(ex.getRawStatusCode() + " : " + ex.getResponseBodyAsString());
     }

@@ -17,6 +17,7 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+@PreAuthorize("isAuthenticated()")
 @RestController
 public class HotelController {
 
@@ -33,8 +34,15 @@ public class HotelController {
      *
      * @return a list of all hotels in the system
      */
-    @RequestMapping(path = "/hotels", method = RequestMethod.GET)
-    public List<Hotel> list() {
+    @PreAuthorize("permitAll") //this allows you to allow no auth when the class is mapped to preauthorize everything else. Doesn't need the parends
+    @RequestMapping(path = "/hotels", method = RequestMethod.GET) //order of preauthorize and requestMapping doesn't matter
+    public List<Hotel> list(Principal principal) {
+        if (principal != null) { //you don't have to be authorized to get here, if the user didn't send a token, it will be null
+            System.out.println(principal.getName());
+        } else {
+            System.out.println("Can't print the name because they aren't logged in.");
+        }
+
         return hotelDAO.list();
     }
 
@@ -114,10 +122,11 @@ public class HotelController {
      * @param id
      * @throws ReservationNotFoundException
      */
+    @PreAuthorize("hasRole('ADMIN')") //makes it so only the ADMIN can delete things not just any logged in user, will give the user a 403 forbidden role
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path = "/reservations/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable int id) throws ReservationNotFoundException {
-        auditLog("delete", id, "username");
+    public void delete(@PathVariable int id, Principal principal) throws ReservationNotFoundException { //spring automatically resolves principal to the logged in user. Should only depend on it if you have something that says hey they have to be logged in
+        auditLog("delete", id, principal.getName());
         reservationDAO.delete(id);
     }
 
@@ -129,10 +138,10 @@ public class HotelController {
      * @return a list of hotels that match the city & state
      */
     @RequestMapping(path = "/hotels/filter", method = RequestMethod.GET)
-    public List<Hotel> filterByStateAndCity(@RequestParam String state, @RequestParam(required = false) String city) {
+    public List<Hotel> filterByStateAndCity(@RequestParam String state, @RequestParam(required = false) String city, Principal principal) {
 
         List<Hotel> filteredHotels = new ArrayList<>();
-        List<Hotel> hotels = list();
+        List<Hotel> hotels = list(principal);
 
         // return hotels that match state
         for (Hotel hotel : hotels) {
@@ -160,9 +169,9 @@ public class HotelController {
      * @param reservation
      * @param username
      */
-    private void auditLog(String operation, int reservation, String username) {
+    private void auditLog(String operation, int reservation, String username) { //in real life there would be some kind of database table audit log that keeps track of who did what
         System.out.println(
-                "User: " + username + "performed the operation: " + operation + "on reservation: " + reservation);
+                "User: " + username + " performed the operation: " + operation + " on reservation: " + reservation);
     }
 
 }
