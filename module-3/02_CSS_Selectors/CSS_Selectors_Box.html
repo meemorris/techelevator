@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+<h1>CSS Selectors</h1>
+<h2>CSS can be included</h2>
+<ul>
+  <li>inline on any element with a style attribute </li>
+  <li>within the document under a &lt;style&gt; element</li>
+  <li>through an external document reference with a &lt;link href=&gt; element</li>
+</ul>
+<h2>CSS Rules have a selector and a declaration block</h2>
+<ul>
+  <li>universal (*) </li>
+  <li>element (li, a, p, h2)</li>
+  <li>id</li>
+  <li>class</li>
+  <li>descendant combinator (descendant space, child (>), adjacent sibling(+), any sibling(~)</li>
+  <li>pseudo-class (a:hover)</li>  
+</ul>
+
+<h1>All HTML elements are considered rectangular boxes. The term <em>Box Model</em> is used when talking about design and layout </h1>
+<h2>The box consists of </h2>
+<ul>
+<li>Content</li>
+<li>Padding - the space between the content and the border. <em>inside</em> an element </li>
+<li>Border</li>
+<li>Margin - the space <em>outside</em> of an element. Used to space it from other elements
+</ul>
+<h2>The box-sizing attributes allows you to specify if the height and width should include the padding and border. border-box => yes, content-box => no. content-box is the default.</h2>
+
+<h1>The Display Attribute specifies if and how an element should be displayed</h1>
+<h2>A <em>block-level</em> elemement always starts on a <em>new line</em> and takes up the <em>full width</em> available.</h2>
+<h3> Examples: div, h1-h6, p, form, header, footer, section </h3>
+<h2>An <em>inline</em> elemement does <em>NOT</em> start on a new line and takes up only <em>as much width as necessary</em> </h2>
+<h3>Examples: span, a, img</h3>
+<h2>An <em>inline-block</em> is similar to inline but <em>allows you to set a width and height</em></h2>
+<h3>You make an element inline-block by setting the display attribute</h3>
+
+</body>
+
+</html>
+
+<style>
+    h1,
+    h2,
+    h3,
+    li {
+        color: #006bb6;
+        font-weight: normal;
+        padding: 3px 3px 3px 6px;
+        border-left: 3px solid #c6c1b8;
+        background: #f2efe9;
+        width: 60%;
+
+    }
+
+
+	
+	table, th, td {
+  border: 1px solid black;
+}
+
+
+
+</style>
