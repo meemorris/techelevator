@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservations</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <header>
+        <h1>Bits & Bytes</h1>
+        <p>The internet's favorite diner</p>
+    </header>
+    <nav>
+        <a href="index.html">View Menu</a>
+    </nav>
+    <main>
+        <h2>Resrvation Form</h2>
+        <form method="POST" action="/api/reservation">
+            <div>
+                <label for="reservationName">Name:</label>
+                <input id="reservationName" name="reservationName" type="text" />
+            </div>
+
+            <div>
+                <label for="numberOfGuests">Number of guests:</label>
+                <input id="numberOfGuests" name="numberOfGuests" type="number" min="1"/>
+            </div>
+            <!--add the reservation date, reservation time and checkbox for if special occasion-->
+            <div>
+                <label for="reservationDate">Reservation Date:</label>
+                <input id="reservationDate" name="reservationDate" type="date"/>
+            </div>
+            <div>
+                <label for="reservationTime">Reservation Time:</label>
+                <input id="reservationTime" name="reservationTime" type="time"/>
+            </div>
+            <div>
+                <label for="specialOccasion">Special occasion?</label>
+                <input id="specialOccasion" name="specialOccasion" type="checkbox"/>
+            </div>
+            <div>
+                <input type="submit" />
+            </div>
+
+        </form>
+    </main>
+
+</body>
+
+</html>
