@@ -10,3 +10,7 @@ h1 {
     font-size: 50px;
     color: blueviolet;
 }
+
+span {
+    font-style: italic;
+}
