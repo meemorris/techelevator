@@ -3,6 +3,7 @@ package com.techelevator.controller;
 import com.techelevator.dao.QuestionDAO;
 import com.techelevator.dao.UserDAO;
 import com.techelevator.model.Question;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,8 +27,10 @@ public class QuestionController {
 
     @RequestMapping(path="question/list",method = RequestMethod.GET)
     public List<Question> getAllQuestions (Principal p){
+        System.out.println(p.getName() + " requested all the questions.");
         return questionDAO.getAllQuestions();
     }
+
     @RequestMapping(path="question/{id}",method = RequestMethod.PUT)
     public void updateQuestion (Principal p, @PathVariable int id, @RequestBody Question q){
         if (questionDAO.updateQuestion(q,id))
@@ -43,4 +46,16 @@ public class QuestionController {
         else
             System.out.println("There was an issue deleting question "+id);
     }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path = "question", method = RequestMethod.POST)
+    public Question addQuestion(@RequestBody Question question) {
+        return questionDAO.createQuestion(question);
+    }
+
+    @RequestMapping(path = "question/filter", method = RequestMethod.GET)
+    public List<Question> getFilteredQuestionList(@RequestParam(required = false) String title, @RequestParam(required = false) String question) {
+        return questionDAO.filter(title, question);
+    }
+
 }

@@ -24,7 +24,7 @@ import com.techelevator.security.jwt.TokenProvider;
 @RestController
 @CrossOrigin  //don't worry about this too much right now
 public class AuthenticationController {
-
+//these are all dependency injected in
     private final TokenProvider tokenProvider;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private UserDAO userDAO;
@@ -66,7 +66,7 @@ public class AuthenticationController {
     /**
      * Object to return as body in JWT Authentication.
      */
-    static class LoginResponse {
+    static class LoginResponse { //static class, smaller class to take in JWT info
 
         private String token;
         private User user;

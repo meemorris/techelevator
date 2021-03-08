@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.techelevator.model.User;
 
-@Service
+@Service //slightly more generic form of @Component, either can be used
 public class UserSqlDAO implements UserDAO {
 
     private JdbcTemplate jdbcTemplate;

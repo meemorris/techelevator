@@ -5,6 +5,9 @@ import com.techelevator.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,10 +59,39 @@ public class QuestionSqlDAO implements  QuestionDAO{
 
     @Override
     public boolean deleteQuestion(int id) {
-        String sql = "delete from question  where question_id = ?";
+        String sql = "delete from questions  where question_id = ?";
         int count = jdbcTemplate.update(sql,id);
         return count==1; //we should update exactly one
     }
+
+    @Override
+    public Question createQuestion(Question q) {
+        String sql = "INSERT INTO questions(title, question) VALUES(?,?) RETURNING question_id";
+        long id = jdbcTemplate.queryForObject(sql, Long.class, q.getTitle(), q.getQuestion());
+        q.setId(id);
+        return q;
+    }
+
+    @Override
+    public List<Question> filter(String title, String question) {
+        //select...where title ilike ? and question ilike ? , queryForObject(sql, title, question)
+        List<Question> filteredList = new ArrayList<>();
+        String sql = "select title, question_id, question from questions where title ilike ? and question ilike ?";
+        title = "%" + title + "%";
+        question = "%" + question + "%";
+//        boolean titleSearch = false;
+//        if (title != null && !title.isEmpty()) {
+//            sql += "title ILIKE ?";
+//            titleSearch = true;
+//        }
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, title, question);
+        while(results.next()) {
+            Question q = mapRowToQuestion(results);
+            filteredList.add(q);
+        }
+        return filteredList;
+    }
+
 
     private Question mapRowToQuestion(SqlRowSet results) {
         Question q = new Question();
