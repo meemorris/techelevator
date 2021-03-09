@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mailing List</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+</head>
+<body class="mailing-list">
+    <header>
+        <h1>Sable</h1>
+
+        <nav class="dark">
+            <a href="index.html">About Sable</a>
+            <a href="mailing-list.html">Join Sable's Mailing List</a>
+        </nav>
+
+        <img src="images/queen.jpg" alt="Side view of dog with golden-colored coat looking intently out the window."/>
+        <img src="images/sleepy.jpg" alt="Dog laying on back sleeping" />
+        <img src="images/yawn.jpg" alt="Dog yawning" />
+        <img src="images/doughnut.jpg" alt="Dog laying down next to toy" />
+        <img src="images/nose.jpg" alt="Close up of dog's nose" />
+        <img src="images/chillin.jpg" alt="Dog laying head against edge of bed on floor" />
+        <p>A regal mutt with a wacky personality</p>
+    </header>
+
+
+    <main>
+        <h2>Mailing List Form</h2>
+        <p>Thank you for your interest in keeping up to date on Sable!</p>
+        <p>Sable would like to know a few things about you. Please fill out the form below.</p>
+        <form action="/api/mailing-list" method="POST">
+
+            <div>
+                <label for="name">Name:</label>
+                <input id="name" name="name" type="text" required/>
+            </div>
+
+            <div>
+                <label for="emailAddress">Email Address:</label>
+                <input id="emailAddress" name="emailAddress" type="email" required/>
+            </div>
+
+            <div>
+                <label for="birthdate">Date of Birth:</label>
+                <input id="birthdate" name="birthdate" type="date" />
+            </div>
+
+            <div>
+                <label for="faveColor">Favorite Color:</label>
+                <input id="faveColor" name="faveColor" type="color" />
+            </div>
+
+            <div>
+                <label for="faveNumber">Favorite Number:</label>
+                <input id="faveNumber" name="faveNumber" type="number" min="0"/>
+            </div>
+
+            <div>
+                <label for="confirmCorrect">Confirm data is correct:</label>
+                <input id="confirmCorrect" name="confirmCorrect" type="checkbox" />
+            </div>
+
+            <div>
+                <input type="submit" />
+            </div>
+
+        </form>
+    </main>
+
+    <footer>
+        <p>Contents copyright of Sable's Family &copy; 2020</p>
+    </footer>
+</body>
+</html>

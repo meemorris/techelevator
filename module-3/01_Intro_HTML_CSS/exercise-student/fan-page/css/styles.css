@@ -1,0 +1,99 @@
+.index {
+    background-color: #ABD0D2;
+    color: #1C1810;  
+}
+
+.mailing-list {
+    background-color: #172525;
+    color: #CAD2D6;
+}
+
+body {
+    font-family: "Barlow", sans-serif; 
+    line-height: 1.6;
+    text-align: center;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img {
+    height: 250px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+span {
+    font-style: italic;
+}
+
+h1 {
+    text-align: center;
+    font-size: 45px;
+}
+
+nav {
+    text-align: center;
+}
+
+h2 {
+    text-decoration: underline;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 40px;
+}
+
+.light a:link {
+    color:#1C1810;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.light a:visited {
+    color:rgb(38, 58, 50);
+    text-decoration: none;
+}
+
+.light a:hover {
+    color:darkcyan;
+    text-decoration: none;
+}
+
+table, th, td {
+    border: 1px solid grey;
+    border-collapse: collapse;
+}
+
+footer {
+    margin-top: 40px;
+}
+
+
+label {
+    margin-bottom: 20px;
+}
+
+input {
+    padding: 2px 2px;
+    margin-bottom: 20px;
+}
+
+.dark a:link {
+    color:#788C96;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.dark a:visited {
+    color:#788C96;
+    text-decoration: none;
+}
+
+.dark a:hover {
+    color:darkcyan;
+    text-decoration: none;
+}
+
+
