@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservations</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <header>
+        <h1>Bits & Bytes</h1>
+        <p>The internet's favorite diner</p>
+    </header>
+
+    <nav>
+        <a href="reservations.html">Make a reservation</a>
+        <a href="index.html">View Menu</a>
+    </nav>
+
+    <main>
+        <h2>Reservation Form</h2>
+        <form action="/api/reservation" method="POST">
+
+            <div>
+                <label for="reservationName">Name:</label>
+                <input id="reservationName" name="reservationName" type="text" />
+            </div>
+           
+            <div>
+                <label for="numberOfGuests">Number of Guests:</label>
+                <input id="numberOfGuests" name="numberOfGuests" type="number" min="1"/>
+            </div>
+          
+
+            <div>
+                <label for="checkInDate">Check In:</label>
+                <input id="checkInDate" name="checkInDate" type="date" />
+            </div>
+         
+
+            <div>
+                <label for="checkOutDate">Check Out:</label>
+                <input id="checkOutDate" name="checkOutDate" type="date" />
+            </div>
+         
+
+            <div>
+                <label for="reservationTime">Time:</label>
+                <input id="reservationTime" name="reservationTime" type="time" />
+            </div>
+         
+
+            <div>
+                <label for="specialOccasion">Special Occasion</label>
+                <input id="specialOccasion" name="specialOccasion" type="checkbox" />
+            </div>
+       
+
+            <div>
+                <input type="submit" />
+            </div>
+
+
+        </form>
+    </main>
+
+</body>
+
+</html>
