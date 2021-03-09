@@ -1,0 +1,148 @@
+html {
+    height: 100%;
+    font-size: 16px;
+}
+
+* {
+/* the width of the box includes padding and border when it's set */
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Raleway", sans-serif;
+    /* gradient background  */
+    background-image: linear-gradient(to bottom, #858c90, #bbb);
+    /* don't repeat the background, stretch it */
+    background-repeat: no-repeat;
+    /* don't scroll the background with the page */
+    background-attachment: fixed;
+    /*don't have the elements wrap, horizontal scroll instead*/
+    white-space: nowrap;
+}
+
+div.trello-list {
+    /* multi-column layout */
+    display: inline-block;
+    width: 300px;
+    background-color: #ddd;
+    /* rounded corners */
+    border-radius: 3px 5px;
+    margin-right: 10px;
+    vertical-align: top;
+}
+
+
+div.trello-list h2 {
+    /*push h2 from the edge */
+    margin: 8px;
+    /*keep font consistent with the root */
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+div.trello-list li {
+    /*remove the numerical formatting */
+    list-style: none;
+    /*set the background color*/
+    background-color: whitesmoke;
+    /*adjust font to be smaller than list title*/
+    font-size: 0.9rem;
+    /*spacing between list items */
+    padding: 8px;
+    margin-bottom: 10px;
+    /*slightly round card edge*/
+    border-radius: 2px;
+    white-space: normal;
+}
+
+/*make list items darker on hover*/
+
+div.trello-list li:hover {
+    background-color: beige;
+    color: teal;
+}
+
+/*the last list item needs to not have the bottom with a space*/
+div.trello-list li:last-child {
+    margin-bottom: 0px;
+}
+
+div.trello-list a {
+    /*layout*/
+    display: block;
+    text-decoration: none;
+    color: #888;
+    /*spacing*/
+    padding: 8px 0px 8px 5px; /*top right bottom left*/
+    font-size: 0.85rem;
+}
+
+div.trello-list ol {
+    /*remove the margin and padding to push the cards in*/
+    margin: 0;
+    padding: 0;
+}
+
+/* h1 or paragraph that is a direct child of header */
+header > h1, 
+header > p {
+    display: inline-block;
+    /*limit the height*/
+    height: 20px;
+    /*middle align the content within the the block*/
+    vertical-align: middle;
+    color: rgba(255,255,255,.5);
+    /*that white line between*/
+    border-right: 1px solid rgba(255,255,255,.5);
+    /*but not right on top of it*/
+    padding-right: 20px;
+}
+
+header > h1 {
+    /*make the board name uppercase*/
+    text-transform: uppercase;
+    font-size: 1.1rem;
+}
+
+header > p {
+    /*make font size of the paragraphs in the header a bit smaller than the root*/
+    font-size: 0.9rem;
+    /*spacing*/
+    padding-left: 5px;
+}
+
+.labels span {
+    display: inline-block;
+    width: 35px;
+    height: 8px;
+    border-radius: 3px;
+}
+
+.label.general {
+    background-color: orange;
+}
+
+.label.pathway {
+    background-color: red;
+}
+
+.label.individual {
+    background-color: green;
+}
+
+.label.pair {
+    background-color: blue;
+}
+
+header {
+    /*fixed to the window so it doesn't scroll offscreen */
+    position: fixed;
+    height: 50px;
+    /* up against the top*/
+    top: 0;
+}
+
+main {
+    margin-top: 50px;
+}
+
