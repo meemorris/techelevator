@@ -1,0 +1,34 @@
+html {
+	font: 96px Courier;
+	color: white;
+}
+
+.box {
+	width: 120px;
+	height: 120px;
+	text-align: center;
+}
+
+.odd {
+	background-color: #ee3e64;
+}
+
+.even {
+	background-color: #44accf;
+}
+
+#box_1, #box_8 {
+	margin-left: 120px;
+}
+
+#box_2, #box_7 {
+	margin-left: 240px;
+}
+
+#box_3, #box_6 {
+	margin-left: 360px;
+}
+
+#box_4, #box_5 {
+	margin-left: 480px;
+}

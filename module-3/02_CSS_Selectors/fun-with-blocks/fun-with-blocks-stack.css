@@ -1,0 +1,28 @@
+* {
+	box-sizing: border-box;
+}
+
+html {
+	font: 5vh Courier;
+	color: white;
+}
+
+body {
+	margin: 0; 
+}
+
+.box {
+	width: 1.5em;
+	height: 10vh;
+	text-align: center;
+	padding-top: 3vh;
+	margin-left: .15em;
+}
+
+.odd {
+	background-color: #ee3e64;
+}
+
+.even {
+	background-color: #44accf;
+}
