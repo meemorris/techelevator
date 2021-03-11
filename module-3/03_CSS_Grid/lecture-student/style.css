@@ -114,9 +114,15 @@ div.food-item {
     padding-left: 25px;
     padding-right: 25px;
 }
+
 div.food-item img {
     max-width: 100%;
 }
+
 div.food-item p {
     line-height: 2em;
+}
+
+img {
+    height: 200px;
 }

@@ -5,6 +5,9 @@
 body {
     margin: 0;
     padding: 0;
+    display: grid;
+    grid-template-columns: 300px 1fr 250px;
+    grid-gap: 15px;
 }
 
 #left-panel > hr {
@@ -97,4 +100,39 @@ aside article header {
 
 aside hr {
     width: 80%;
+}
+
+@media screen and (max-width: 800px) {
+    body {
+        grid-template-columns: 100%;
+        justify-items: center;
+    }
+
+    #left-panel > nav > menu {
+        margin: 5px auto;
+    }
+
+    #left-panel > nav > menu > li {
+        padding: 0 7px;
+    }
+
+    #left-panel > nav > menu > li > a {
+        margin: 0;
+    }
+
+    .active-left-menu,
+    #left-panel > nav > menu > li:hover {
+        border-radius: 30px;
+    }
+
+    #left-panel > nav > menu > li {
+        padding: 0 7px;
+        display: inline-block;
+    }
+
+    main h3 {
+        text-align: center;
+        margin: 0;
+    }
+
 }

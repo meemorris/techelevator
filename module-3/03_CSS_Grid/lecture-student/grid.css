@@ -1,0 +1,45 @@
+div.container {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-areas: 
+    "header header header"
+    "nav menu events"
+    "footer footer footer";
+    height: 100vh;
+    gap: 10px;
+}
+
+div.container header {
+    grid-area: header;
+}
+
+#menu-nav {
+    grid-area: nav;
+}
+
+main {
+    grid-area: menu;
+}
+
+#upcoming-events {
+    grid-area: events;
+}
+
+div.container footer {
+    grid-area: footer;
+}
+
+@media screen and (max-width: 768px) {
+    div.container {
+        grid-template-areas: 
+        "header"
+        "nav"
+        "menu"
+        "events"
+        "footer";
+        grid-template-columns: 1fr; /* changing shape of grid from three by three to one by five */
+        
+    }
+}
+
+
