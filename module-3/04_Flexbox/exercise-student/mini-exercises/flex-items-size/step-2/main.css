@@ -7,6 +7,11 @@ body {
 
 .container {
   background-color: #F0F0F0;
+  display: flex;
+}
+
+.box:nth-child(even) {
+  flex-grow: 1;
 }
 
 .box {

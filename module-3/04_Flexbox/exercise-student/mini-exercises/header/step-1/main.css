@@ -3,9 +3,12 @@ body {
   padding: 0
 }
 
-header {
+header,
+header ul {
   background-color: #F0F0F0;
   padding: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .logo {
