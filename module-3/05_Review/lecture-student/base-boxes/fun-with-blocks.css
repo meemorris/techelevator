@@ -23,3 +23,31 @@ body {
 .even {
 	background-color: #44accf;
 }
+
+.container {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	grid-template-areas: 
+	"child1 child2"
+	"footer footer";
+}
+
+.child1 {
+	grid-area: "child1";
+	border: 2px solid green;
+	display: flex;
+	justify-content: space-around;
+}
+
+.child2 {
+	grid-area: "child2";
+	border: 2px solid blue;
+	display: flex;
+	justify-content: space-around;
+}
+
+footer {
+	grid-area: "footer";
+	border: 2px solid red;
+	height: 20px;
+}
