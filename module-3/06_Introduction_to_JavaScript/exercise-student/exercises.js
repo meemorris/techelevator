@@ -144,7 +144,7 @@ or false otherwise.
 
 		function fizzBuzz(num) {
 			let result = num;
-			if (num % 15 == 0) {
+			if (num % 3 == 0 && num % 5 == 0) {
 				result = 'FizzBuzz';
 			} else if (num % 3 == 0) {
 				result = 'Fizz';
