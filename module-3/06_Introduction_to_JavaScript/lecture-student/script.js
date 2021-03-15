@@ -3,6 +3,9 @@
 */
 
 // Single line comment
+let daysInMonth = 31; //not inside a function
+console.log(daysInMonth); //don't need to have everything in a function, stuff outside a function will just automatically load in the browser, normally you'd want things
+//to only run when you have an event, etc. so keep them in functions
 
 /**
  * Functions start with the word function.
@@ -10,8 +13,22 @@
  */
 function variables() {
   // Declares a variable where the value cannot be changed
+  const daysInWeek = 7;
+  console.log(daysInWeek);
+
   // Declares a variable those value can be changed
+  let daysInMonth = 31;
+  console.log(`Number of days this month ${daysInMonth}`);
+
   // Declares a variable that will always be an array
+  const daysOfTheWeek = ['Monday','Tuesday','Wednesday','Thursday','Friday'];
+  console.table(daysOfTheWeek);
+  daysOfTheWeek.push('Saturday');
+  console.table(daysOfTheWeek);
+  const myArray = []; /*
+  this always points to myArray but I am allowed to add and remove items from the array 
+  (unlike Java) (push, pop, shift) (arrays are not fixed in size in javascript)
+  */
 }
 
 /**
@@ -47,12 +64,12 @@ function equality(x, y) {
  * @param {Object} x The object to check for truthy or falsy,
  */
 function falsy(x) {
-  if (x) {
+  if (x) { //if this thing, if its null, undefined or NaN it will be false //if x is just one variable it is checking truthy falsy, vs. if (x==7), boolean thing. 
     console.log(`${x} is truthy`);
   } else {
     console.log(`${x} is falsy`);
   }
-}
+} //a use case to make sure that what you get back from an API is not undefined
 
 /**
  *  Objects are simple key-value pairs
@@ -70,14 +87,31 @@ function objects() {
       "Milton Waddams",
       "Samir Nagheenanajar",
       "Michael Bolton"
-    ]
+    ],
+    toString: function() {
+      return `${this.lastName}, ${this.firstName}, ${(this.age)}`;
+    }
   };
 
   // Log the object
+  console.log(person.toString());
+  console.table(person);
 
   // Log the first and last name
+  console.log('First name is ' + person.firstName);
+  console.log('Last name is: ' + person.lastName);
 
   // Log each employee
+  for (let i = 0; i < person.employees.length; i++) {
+    console.log(`Employee number ${i} is ${person.employees[i]}`);
+  }
+
+  //using a foreach loop (foreah doesn't give you access to the index just like in java, in javascript you see foreach loops more than traditional for loops)
+  console.log('with a foreach loop');
+  person.employees.forEach(element=> console.log(element));
+
+
+
 }
 
 /*
@@ -128,14 +162,37 @@ function stringFunctions(value) {
   console.log(`.endsWith('World') - ${value.endsWith("World")}`);
   console.log(`.startsWith('Hello') - ${value.startsWith("Hello")}`);
   console.log(`.indexOf('Hello') - ${value.indexOf("Hello")}`);
+  console.log(value.toLowerCase()); //just like in java, returning a string, not changing the value
+  console.log(value);
 
   /*
     Other Methods
         - split(string)
-        - substr(number, number)
+        - substr(number, number) //these two are different from each other
         - substring(number, number)
         - toLowerCase()
         - trim()
         - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
     */
+}
+
+
+//arrays
+function testArray() {
+  const myArray = [1, 2, 3];
+  console.table(myArray);
+  console.log('push 8');
+  myArray.push(8); //adds 8 on to the end
+  console.table(myArray);
+  console.log('popping');
+  console.log(myArray.pop()); //returns the value that it pops off
+
+  console.log('after pop');
+  console.table(myArray);
+
+  //concat merges two or more arrays and returns a new one. your array can have different kinds of values. it doesn't change either original array, it creates a whole new one.
+  const array2 = ['one','two'];
+  const arrayConcat = myArray.concat(array2);
+  console.log('The concatenated array');
+  console.table(arrayConcat);
 }

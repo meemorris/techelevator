@@ -12,6 +12,36 @@
         iqTest("2 2 4 6") → 0 // all numbers are even, therefore there is no position of an odd number
 */
 
+        function iqTest(string) {
+            const array = string.split(' ');
+            
+            for (let i = 0; i < array.length; i++) { //look at converting to foreach
+                array[i] = parseInt(array[i]);
+            }
+
+            let count = 0;
+            let result = 0;
+            for (let i = 0; i < array.length; i++) {
+                if (array[i] % 2 == 0) {
+                    count++;
+                }
+            }
+
+
+            for (let i = 0; i < array.length; i++) {
+                if (count > 1) {
+                    if (array[i] % 2 == 1) {
+                        result = i + 1;
+                    }
+                } else if (array[i] % 2 == 0) {
+                    result = i + 1;
+                }
+            }
+
+            return result;
+
+        }
+
 /*
 2. **titleCase** Write a function that will convert a string into title case, given an optional 
     list of exceptions (minor words). The list of minor words will be given as a string with each 
@@ -28,3 +58,25 @@ argument is unused.
 		titleCase('THE WIND IN THE WILLOWS', 'The In') // should return: 'The Wind in the Willows'
         titleCase('the quick brown fox') // should return: 'The Quick Brown Fox'
 */
+
+        function titleCase(string, optionalList) {
+            let optionalArray = [];
+            if (optionalList) {
+                 optionalArray = optionalList.split(' ');
+            }
+            
+            for (let i = 0; i < optionalArray.length; i++) {
+                optionalArray[i] = optionalArray[i].toLowerCase();
+            }
+
+            const inputArray = string.split(' ');
+
+            for (let i = 0; i < inputArray.length; i++) {
+                if (!optionalArray.includes(inputArray[i].toLowerCase()) || i == 0) {
+                    inputArray[i] = inputArray[i].charAt(0).toUpperCase() + inputArray[i].slice(1).toLowerCase();
+                } else {
+                    inputArray[i] = inputArray[i].toLowerCase();
+                }
+        }
+        return inputArray.join(' ');
+    }
