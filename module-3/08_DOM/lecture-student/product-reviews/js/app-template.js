@@ -52,19 +52,21 @@ function setPageDescription() {
  * I will use a template to display all of the reviews on our web page
  */
 function displayReviews() {
-  if ('content' in document.createElement('template')) {
+  if ('content' in document.createElement('template')) { //if this got created correctly is what its saying
     const main = document.getElementById('main');
     reviews.forEach((review) => {
-      const tmpl = document.getElementById('review-template').content.cloneNode(true);
-      tmpl.querySelector('h4').innerHTML = review.reviewer;
-      tmpl.querySelector('h3').innerHTML = review.title;
-      tmpl.querySelector('p').innerHTML = review.review;
+      const tmpl = document.getElementById('review-template').content.cloneNode(true); //true does a deep clone, 
+      //grabbing the element that is the template, clone the content, basically creates all of the elements that we need 
+      //by cloning the template
+      tmpl.querySelector('h4').innerText = review.reviewer;
+      tmpl.querySelector('h3').innerText = review.title;
+      tmpl.querySelector('p').innerText = review.review;
       // there will always be 1 star because it is a part of the template
       for (let i = 1; i < review.rating; ++i) {
-        const img = tmpl.querySelector('img').cloneNode();
+        const img = tmpl.querySelector('img').cloneNode(); //clone the image
         tmpl.querySelector('.rating').appendChild(img);
       }
-      main.appendChild(tmpl);
+      main.appendChild(tmpl); //append template to the main
     });
   } else {
     console.error('Your browser does not support templates');
