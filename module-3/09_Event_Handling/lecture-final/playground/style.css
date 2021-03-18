@@ -1,0 +1,11 @@
+div {
+    border: 2px solid black;
+}
+
+.makeTextYellow {
+    color: darkgoldenrod;
+}
+
+.greenBackground{
+    background-color: darkolivegreen;
+}
