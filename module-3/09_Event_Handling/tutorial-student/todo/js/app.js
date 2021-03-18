@@ -38,6 +38,41 @@ function addTodos() {
   todoList.appendChild(ul);
 }
 
-init();
-addPageTitle();
-addTodos();
+
+document.addEventListener('DOMContentLoaded', () => {
+  init();
+  addPageTitle();
+  addTodos();
+
+  const tasks = document.querySelectorAll('li')
+
+  tasks.forEach((task) => {
+
+    // when you click on a task, mark it completed
+    task.addEventListener('click', () => {
+      if( !task.classList.contains('completed') ) {
+        task.classList.add('completed')
+        task.querySelector('i').classList.add('completed')
+      }
+    })
+
+    // when you double click a task, remove the completed class
+    task.addEventListener('dblclick',() => {
+      if( task.classList.contains('completed') ) {
+        task.classList.remove('completed')
+        task.querySelector('i').classList.remove('completed')
+      }
+    })
+
+  })
+
+  // mark all tasks as completed
+  const completeAll = document.getElementById('btnCompleteAll')
+  completeAll.addEventListener('click',() => {
+    tasks.forEach((task) => {
+      task.classList.add('completed')
+      task.querySelector('i').classList.add('completed')
+    })
+  })
+
+});
