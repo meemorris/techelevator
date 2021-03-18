@@ -60,12 +60,55 @@ function displayReview(review) {
 
 // LECTURE STARTS HERE ---------------------------------------------------------------
 
-// set the product reviews page title
-setPageTitle();
-// set the product reviews page description
-setPageDescription();
-// display all of the product reviews on our page
-displayReviews();
+document.addEventListener('DOMContentLoaded', () => {
+  // set the product reviews page title
+  setPageTitle();
+  // set the product reviews page description
+  setPageDescription();
+  // display all of the product reviews on our page
+  displayReviews();
+  //if the user clicks on the description, all toggleDescriptionEdit
+  const desc = document.querySelector('.description');
+  desc.addEventListener('click', (event) => {
+    toggleDescriptionEdit(event.target);
+  });
+  //if the user clicks enter or escape inside the text box, then save
+  //if needed, either way filp it back to hide the textbox and show the paragraph
+  const inputDesc = document.getElementById('inputDesc');
+  inputDesc.addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') {
+      exitDescriptionEdit(event.target, true);
+    }
+    if (event.key === 'Escape') {
+      exitDescriptionEdit(event.target, false);
+    }
+  });
+
+  //if the user moves the mouse out of the input field, it should tell the 
+  //user to escape and exit without saving
+  inputDesc.addEventListener('mouseleave', (event) => {
+    exitDescriptionEdit(event.target, false);
+  });
+
+  //if the user clicks on teh button to toggle the form, call showHideForm
+  const btnToggleFormElement = document.getElementById('btnToggleForm');
+  btnToggleFormElement.addEventListener('click', showHideForm);
+
+  //when the user clicks save review, call save review
+  const btnSaveReview = document.getElementById('btnSaveReview');
+  btnSaveReview.addEventListener('click', (event) => {
+    event.preventDefault();
+    saveReview();
+  });
+
+})
+
+// function displayDescription(event) {
+//   const desc = document.querySelector('.description');
+//   desc.addEventListener('click',(event) => {
+//     toggleDescriptionEdit(event.target)
+//   });
+// }
 
 /**
  * Take an event on the description and swap out the description for a text box.
@@ -74,7 +117,7 @@ displayReviews();
  */
 function toggleDescriptionEdit(desc) {
   const textBox = desc.nextElementSibling;
-  textBox.value = description;
+  textBox.value = desc.innerText;
   textBox.classList.remove('d-none');
   desc.classList.add('d-none');
   textBox.focus();
@@ -108,7 +151,7 @@ function showHideForm() {
     btn.innerText = 'Hide Form';
     document.getElementById('name').focus();
   } else {
-    resetFormValues();
+    resetFormValues(); //sets them all back to blanks
     form.classList.add('d-none');
     btn.innerText = 'Add Review';
   }
@@ -130,4 +173,26 @@ function resetFormValues() {
 /**
  * I will save the review that was added using the add review from
  */
-function saveReview() {}
+function saveReview() {
+  //create a new review object based on the fields in the form
+  const name = document.getElementById('name').value;
+  const title = document.getElementById('title').value; //.value gives you the value of what's in there
+  const rating = document.getElementById('rating').value;
+  const review = document.getElementById('review').value;
+
+  const newReview = {
+    reviewer: name,
+    title: title,
+    review: review,
+    rating: rating
+  }
+
+  //add the new review object to the reviews array
+  reviews.push(newReview); 
+
+  //call displayReview and pass in the new review as a parameter
+  displayReview(newReview);
+
+  //stop showing the form - showHideForm to do that
+  showHideForm();
+}
