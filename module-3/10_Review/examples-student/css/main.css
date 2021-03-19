@@ -1,0 +1,37 @@
+div {
+  
+    height: 200px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+.lightGrey {
+    background-color: lightslategrey;
+}
+.bigFont {
+    font-size: large;
+    color: whitesmoke;
+    font-weight: bolder;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.pink {
+    background-color: pink;
+}
+
+.green {
+    background-color: lime;
+}
+
+.purple {
+    background-color: purple;
+}
+.red {
+    background-color: red;
+}
+.yellow {
+    background-color: goldenrod;
+}
+
