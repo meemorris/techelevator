@@ -5,42 +5,73 @@
     <p class="description">{{ description }}</p>
 
     <div class="well-display">
-      <div class="well">
+      <div class="well" v-on:click="filter=0">
         <span class="amount">{{ averageRating }}</span>
         Average Rating
       </div>
 
-      <div class="well">
+      <div class="well" v-on:click="filter=1">
         <span class="amount">{{ numberOfOneStarReviews }}</span>
         1 Star Review{{ numberOfOneStarReviews === 1 ? '' : 's' }}
       </div>
 
-      <div class="well">
+      <div class="well" v-on:click="filter=2">
         <span class="amount">{{ numberOfTwoStarReviews }}</span>
         2 Star Review{{ numberOfTwoStarReviews === 1 ? '' : 's' }}
       </div>
 
-      <div class="well">
+      <div class="well" v-on:click="filter=3">
         <span class="amount">{{ numberOfThreeStarReviews }}</span>
         3 Star Review{{ numberOfThreeStarReviews === 1 ? '' : 's' }}
       </div>
 
-      <div class="well">
+      <div class="well" v-on:click="filter=4">
         <span class="amount">{{ numberOfFourStarReviews }}</span>
         4 Star Review{{ numberOfFourStarReviews === 1 ? '' : 's' }}
       </div>
 
-      <div class="well">
+      <div class="well" v-on:click="filter=5">
         <span class="amount">{{ numberOfFiveStarReviews }}</span>
         5 Star Review{{ numberOfFiveStarReviews === 1 ? '' : 's' }}
       </div>
     </div>
 
+    <a href="#" v-on:click.prevent="showForm = true">Show Form</a> 
+    <!-- inline thing since it is simple, just setting showForm to true -->
+
+    <form v-on:submit.prevent="addNewReview" v-if="showForm===true">
+      <div class="form-element">
+        <label for="reviewer">Name:</label>
+        <input id="reviewer" type="text" v-model="newReview.reviewer"/>
+      </div>
+      <div class="form-element">
+        <label for="title">Title:</label>
+        <input id="title" type="text" v-model="newReview.title"/>
+      </div>
+      <div class="form-element">
+        <label for="rating">Rating:</label>
+        <select id="rating" v-model.number ="newReview.rating"> 
+        <option value="1">1 Star</option>
+        <option value="2">2 Stars</option>
+        <option value="3">3 Stars</option>
+        <option value="4">4 Stars</option>
+        <option value="5">5 Stars</option>
+        </select>
+         </div>
+
+        <div class="form-element">
+        <label for="review">Review:</label>
+        <input id="review" type="text" v-model="newReview.review"/>
+      </div>
+      <input type="submit" value="Save"/>
+        <input type="button" value="Cancel" v-on:click.prevent="resetForm"/>
+    </form>
+
     <div
       class="review"
       v-bind:class="{ favorited: review.favorited }"
-      v-for="review in reviews"
-      v-bind:key="review.id"
+      v-for="(review,index) in filteredReviews"
+      v-bind:key="index"
     >
       <h4>{{ review.reviewer }}</h4>
       <div class="rating">
@@ -73,6 +104,7 @@ export default {
       description:
         "Host and plan the perfect cigar party for all of your squirrelly friends.",
       newReview: {},
+      showForm: false,
       reviews: [
         {
           reviewer: "Malcolm Gladwell",
@@ -106,7 +138,8 @@ export default {
           rating: 3,
           favorited: false
         }
-      ]
+      ],
+      filter: 0, //if the filter is set to zero, show all. otherwise only show reviews with that star rating
     };
   },
   computed: {
@@ -117,28 +150,36 @@ export default {
       return (sum / this.reviews.length).toFixed(2);
     },
     numberOfOneStarReviews() {
-      return this.reviews.reduce((currentCount, review) => {
-        return currentCount + (review.rating === 1);
-      }, 0);
+      return this.numberOfReviews(1);
     },
     numberOfTwoStarReviews() {
-      return this.reviews.reduce((currentCount, review) => {
-        return currentCount + (review.rating === 2);
-      }, 0);
+      return this.numberOfReviews(2);
     },
     numberOfThreeStarReviews() {
-      return this.reviews.reduce((currentCount, review) => {
-        return currentCount + (review.rating === 3);
-      }, 0);
+      return this.numberOfReviews(3);
     },
     numberOfFourStarReviews() {
-      return this.reviews.reduce((currentCount, review) => {
-        return currentCount + (review.rating === 4);
-      }, 0);
+      return this.numberOfReviews(4);
     },
     numberOfFiveStarReviews() {
+      return this.numberOfReviews(5);
+    },
+    filteredReviews() {
+      return this.reviews.filter(review => (review.rating===this.filter || this.filter===0))  
+    }
+  },
+  methods: {
+    addNewReview() {
+      this.reviews.push(this.newReview); //push adds it to the end of the array, unshift will add it to the beginning of the array
+      this.resetForm();
+    },
+    resetForm() {
+      this.newReview={}; //two way data binding, this should then make those text fields also be empty
+      this.showForm = false;
+    },
+    numberOfReviews(numStars) {
       return this.reviews.reduce((currentCount, review) => {
-        return currentCount + (review.rating === 5);
+        return currentCount + (review.rating === numStars);
       }, 0);
     }
   }
