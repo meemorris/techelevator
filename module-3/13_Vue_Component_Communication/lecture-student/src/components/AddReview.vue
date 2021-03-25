@@ -11,6 +11,7 @@
       <div class="form-element">
         <label for="reviewer">Name:</label>
         <input id="reviewer" type="text" v-model="newReview.reviewer" />
+        <!-- used v-model for newReview which is okay because newReview doesn't live in the datasource, its a local variable, then you can just save it to the reviews list -->
       </div>
       <div class="form-element">
         <label for="title">Title:</label>
@@ -49,11 +50,12 @@ export default {
   },
   methods: {
     addNewReview() {
+      this.$store.commit("ADD_REVIEW", this.newReview);
       this.resetForm();
     },
     resetForm() {
       this.showForm = false;
-      this.newReview = {};
+      this.newReview = {favorited: false};
     },
   },
 };

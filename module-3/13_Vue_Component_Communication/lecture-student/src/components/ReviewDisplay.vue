@@ -9,6 +9,8 @@
         v-for="n in review.rating"
         v-bind:key="n"
       />
+
+      <!-- for every review in this component, it will create a component -->
     </div>
     <h3>{{ review.title }}</h3>
     <p>{{ review.review }}</p>
@@ -16,8 +18,12 @@
       Favorite?
       <input
         type="checkbox"
+        v-on:change="onFavoritedChange"
         v-bind:checked="review.favorited"
       />
+      <!-- if the data says it is favorited, check the box -->
+      <!-- if someone checks the box we will do it using a mutation -->
+      <!-- we don't use v-model because we only want changing to happen on a mutation -->
     </p>
   </div>
 </template>
@@ -28,7 +34,7 @@ export default {
   props: ["review"],
   methods: {
     onFavoritedChange() {
-
+      this.$store.commit("FLIP_FAVORITED", this.review);
     }
   }
 };

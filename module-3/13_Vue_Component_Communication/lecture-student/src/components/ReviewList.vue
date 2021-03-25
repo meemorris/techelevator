@@ -1,10 +1,12 @@
 <template>
   <div class="reviews">
     <review-display
-      v-for="review in filteredReviews"
-      v-bind:key="review.title"
-      v-bind:review="review"
+      v-for="reviewItem in filteredReviews"
+      v-bind:key="reviewItem.title"
+      v-bind:review="reviewItem"
     />
+    <!-- creating a review display here, v-bind:review is referring to the prop on review display, the second review is what you are calling it on the parent -->
+  <!-- review is the name of the prop on review display -->
   </div>
 </template>
 
@@ -18,8 +20,8 @@ export default {
   },
   computed: {
     filteredReviews() {
-      const reviewsFilter = -1;
-      const reviews = [];
+      const reviewsFilter = this.$store.state.filter;
+      const reviews = this.$store.state.reviews;
       return reviews.filter(review => {
         return reviewsFilter === 0 ? true : reviewsFilter === review.rating;
       });

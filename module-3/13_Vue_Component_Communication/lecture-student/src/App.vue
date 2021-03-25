@@ -1,17 +1,21 @@
 <template>
   <div id="app" class="main">
-    <h1>Product Reviews for </h1>
-    <p class="description"></p>
+    <h1>Product Reviews for {{ $store.state.name }}</h1>
+    <p class="description"> {{ $store.state.description }}</p>
     <div class="well-display">
       <average-summary />
-      <star-summary />
-      <star-summary />
-      <star-summary />
-      <star-summary />
-      <star-summary />
+      <star-summary v-bind:rating="1"/>
+      <!-- parent side this is how you pass in the rating information -->
+      <!-- v-bind is required if it's anything other than a string -->
+      <star-summary rating="2"/>
+      <!-- this is where we are "using this component" java way: instantiating this component -->
+      <star-summary rating="3"/>
+      <star-summary rating="4"/>
+      <star-summary rating="5"/>
     </div>
     <add-review />
     <review-list />
+    <review-table />
   </div>
 </template>
 
@@ -20,6 +24,7 @@ import AverageSummary from "./components/AverageSummary.vue";
 import StarSummary from "./components/StarSummary.vue";
 import AddReview from "./components/AddReview.vue";
 import ReviewList from "./components/ReviewList.vue";
+import ReviewTable from "./components/ReviewTable.vue";
 
 export default {
   name: "app",
@@ -27,7 +32,8 @@ export default {
     AverageSummary,
     StarSummary,
     AddReview,
-    ReviewList
+    ReviewList,
+    ReviewTable
   }
 };
 </script>
