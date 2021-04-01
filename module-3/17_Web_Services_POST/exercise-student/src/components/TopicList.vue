@@ -1,5 +1,6 @@
 <template>
   <div class="topic-list">
+    <div class="status-message error" v-show="errorMsg !== ''">{{errorMsg}}</div>
     <table>
       <thead>
         <tr>
@@ -32,13 +33,33 @@ import topicService from "@/services/TopicService.js";
 
 export default {
   name: "topic-list",
+  data() {
+    return {
+      errorMsg: ''
+    }
+  },
   methods: {
     getTopics() {
       topicService.list().then(response => {
         this.$store.commit("SET_TOPICS", response.data);
       });
     },
-    deleteTopic(id) {}
+    deleteTopic(id) {
+      topicService.delete(id).then(response => {
+        if (response.status === 200) {
+          this.getTopics();
+        }
+      })
+      .catch(error => {
+        if (error.response) {
+          this.errorMsg = "Error deleting topic. Response was " + error.response.statusText;
+        } else if (error.request) {
+          this.errorMsg = "Error deleting topic. Unreachable server."
+        } else {
+          this.errorMsg = "Error deleting topic. Could not create request."
+        }
+      })
+    }
   },
   created() {
     this.getTopics();

@@ -1,6 +1,7 @@
 <template>
   <form v-on:submit.prevent>
     <div class="field">
+      <div class="status-message error" v-show="errorMsg !== ''">{{errorMsg}}</div>
       <label for="title">Title</label>
       <input name="title" type="text" v-model="title" />
     </div>
@@ -23,7 +24,8 @@ export default {
   data() {
     return {
       title: "",
-      messageText: ""
+      messageText: "",
+      errorMsg: ""
     };
   },
   methods: {
@@ -33,8 +35,22 @@ export default {
         topicId: this.topicId,
         title: this.title,
         messageText: this.messageText
-      };
-      // call update in message service
+      }
+      messageService.update(message.id, message)
+      .then(response => {
+        if (response && response.status === 200) {
+          this.$router.push(`/${message.topicId}`);
+        }
+      })
+      .catch(error => {
+        if (error.response) {
+          this.errorMsg = "Error updating message. Response was " + error.response.statusText;
+        } else if (error.request) {
+          this.errorMsg = "Error updating message. Unreachable server."
+        } else {
+          this.errorMsg = "Error updating message. Could not create request."
+        }
+      })
     }
   },
   created() {
