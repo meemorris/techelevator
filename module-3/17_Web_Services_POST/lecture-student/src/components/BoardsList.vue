@@ -46,6 +46,7 @@ export default {
   },
   created() {
     this.retrieveBoards();
+    // created just calls a method so that we can just call it again, since we can't call created
   },
   methods: {
     retrieveBoards() {
@@ -59,7 +60,30 @@ export default {
       });
     },
     saveNewBoard() {
-
+      this.isLoading = true;
+      boardsService.addBoard(this.newBoard)
+      .then(response => {
+        if (response.status === 201) {
+          this.retrieveBoards();
+          this.showAddBoard = false;
+          this.newBoard = {
+            title: "",
+            backgroundColor: this.randomBackgroundColor()
+          };
+          this.isLoading = false;
+        }
+      })
+      .catch(error => {
+        if (error.response) { //reached the server but returned an error
+          this.errorMsg = "Error adding new board. Response was " + error.response.statusText;
+        } else if (error.request) { //successfully created a request but didn't reach the server
+          this.errorMsg = "Error adding new board. Unreachable server."
+        } else {
+          this.errorMsg = "Error adding board. Could not create request."
+        }
+        this.isLoading = false;
+      });
+      //code here will execute probably before the then and catch code
     },
     randomBackgroundColor() {
       return "#" + this.generateHexCode();

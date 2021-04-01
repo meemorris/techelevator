@@ -67,7 +67,26 @@ export default {
         });
     },
     deleteBoard() {
-      
+      if (confirm("Deleting this board deletes all cards. You cannot undo this action. Are you sure?")) {
+        boardsService.deleteBoard(this.boardId)
+        .then((response) => {
+          if (response.status === 200) {
+            alert("Board successfully deleted.");
+            // a lot of times to save time, space, we don't reload all the boards, we just refresh the store memory
+            this.$store.commit("DELETE_BOARD", this.boardId);
+            this.$router.push("/");
+          }
+        })
+        .catch((error) => {
+          if (error.response) {
+            this.errorMsg = "Error deleting board. Response was " + error.response.statusText;
+          } else if (error.request) {
+            this.errorMsg = "Error deleting board. Server couldn't be reached."
+          } else {
+            this.errorMsg = "Error deleting board. Request could not be created."
+          }
+        });
+      }
     }
   },
   created() {

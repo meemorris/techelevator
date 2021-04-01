@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <boards-list />
+    <!-- if you want something to always show, put it in App.vue -->
     <router-view :key="$route.fullPath" class="routerView" />
   </div>
 </template>
