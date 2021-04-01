@@ -12,6 +12,7 @@
         v-bind:style="{ 'background-color': board.backgroundColor }"
         v-else
       >
+      <!-- v-else, this is what you do if v-if is false -->
         <router-link v-bind:to="{ name: 'Board', params: { id: board.id } }">
           {{ board.title }}
         </router-link>
@@ -37,6 +38,8 @@ export default {
     });
   }
 };
+// best practice to name it response
+// response.data is the JSON from the body
 </script>
 
 <style scoped>
