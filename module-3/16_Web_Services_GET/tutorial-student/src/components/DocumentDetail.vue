@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import docsService from "../services/DocsService";
+
 export default {
   name: "document-detail",
   data() {
@@ -27,6 +29,11 @@ export default {
         content: ""
       }
     };
+  },
+  created() {
+    docsService.get(this.$route.params.id).then((response) => {
+      this.document = response.data;
+    });
   }
 };
 </script>
