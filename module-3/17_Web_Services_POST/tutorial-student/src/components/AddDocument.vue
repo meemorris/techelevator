@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import docsService from '../services/DocsService';
 import moment from "moment";
 import faker from "faker";
 
@@ -40,7 +41,15 @@ export default {
     };
   },
   methods: {
-    saveDocument() {},
+    saveDocument() {
+      docsService
+      .create(this.document)
+      .then((response) => {
+        if (response.status === 201) {
+          this.$router.push("/");
+        }
+      })
+    },
     cancel() {
       this.$router.push("/");
     }

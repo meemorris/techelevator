@@ -38,7 +38,22 @@ export default {
     viewDocument(id) {
       this.$router.push(`/document/${id}`);
     },
-    deleteDocument(id) {},
+    deleteDocument(id) {
+      docsService
+      .delete(id)
+      .then(response => {
+        if (response.status === 200) {
+          this.getDocuments();
+        }
+      })
+      .catch(error => {
+        if (error.response.status === 404) {
+          this.$router.push("/404");
+        } else {
+          console.error(error);
+        }
+      });
+    },
     getDocuments() {
       docsService.list().then(response => {
         this.$store.commit("SET_DOCUMENTS", response.data);
