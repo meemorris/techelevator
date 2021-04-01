@@ -1,5 +1,9 @@
 <template>
-  <div></div>
+  <div>
+    <router-view />
+    <!-- functional component that renders that matched component for the given path -->
+    <!-- this says hey go look at this to see what component you should display -->
+  </div>
 </template>
 
 <script>

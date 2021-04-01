@@ -39,7 +39,7 @@ export default {
         reviewer: "",
         title: "",
         rating: 0,
-        review: ""
+        review: "",
       }
     };
   },
@@ -48,7 +48,10 @@ export default {
       const productID = this.$route.params.id;
       this.newReview.id = productID;
       this.$store.commit("ADD_REVIEW", this.newReview);
-      // TODO: send the visitor back to the product page to see the new review
+      // send the visitor back to the product page to see the new review
+      this.$router.push({name:'product-detail', params: {id: productID}})
+      // since you're looking it up, it should go inside double quotes and curly braces
+      // this.$router.push allows you to automatically push a user to a page
     },
     resetForm() {
       this.newReview = {};
